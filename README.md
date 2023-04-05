@@ -31,8 +31,6 @@
 
 there can be multiple entries with the same orderId, but the productId must be different. due to this, the orderId and productId combined will serve as the unique identifier of the entry (aka composite key).
 
-![alt text](https://i.ibb.co/hWFbjVQ/schema-720.jpg)
-
 ## 2. What entities the API will have
 
 The entities that the API will have are Products, Users and Orders.
@@ -89,6 +87,10 @@ This will be decided based on the needed actions. So far, the actions are:
 ### /orders/{orderId}
 
 14. GET request gets an order according to order identifier. returns one order.
+
+Visual respresentation:
+
+![alt text](https://i.ibb.co/hWFbjVQ/schema-720.jpg)
 
 ## 5. Swagger output
 
