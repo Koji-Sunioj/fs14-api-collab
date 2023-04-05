@@ -60,7 +60,7 @@ This will be decided based on the needed actions. So far, the actions are:
 
 6. POST request - creates an access token for the user to sign in, if the credentials are correctly filled. returns token and 200 code.
 
-### /auth/signUp
+### /auth/register
 
 7. POST request - create (sign up) a new user in the database. returns 200 code - user will need to sign in to get access token.
 
@@ -94,14 +94,13 @@ Visual respresentation:
 
 ## 5. Swagger output
 
-There are exactly four endpoints being products, auth, users and orders. For each endpoint, one folder will be created in this directory with a .yaml file describing the actions in subject number 4 - "what kind of endpoints will this API have?". For simplicity sake, I created on simple example which others can follow - but it also means one person might not have something to do.
+There are exactly four endpoints being products, auth, users and orders. For each endpoint, one folder will be created in this directory with a .yaml file describing the actions in subject number 4 - "what kind of endpoints will this API have?". For simplicity sake, I created on simple example which others can follow.
 
 Useful links for creating a simple .yaml file with swagger: 
 - https://youtu.be/rkk2h6Tra9A
 - https://learn21.in/blog/code-snippet-sample-example-wagger-api
 
-For anyone not having something to do, perhaps making an ERD diagram or something worth effort can be delegated to them. It i
-
+For anyone not having something to do, perhaps making an ERD diagram or something worth effort can be delegated to them.
 # Design a REST API - Design First (NO CODE)
 
 Before diving into the assignment, make sure you review the slides and understand the theortical part and best practices.
