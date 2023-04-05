@@ -31,6 +31,8 @@
 
 there can be multiple entries with the same orderId, but the productId must be different. due to this, the orderId and productId combined will serve as the unique identifier of the entry (aka composite key).
 
+![alt text](https://i.ibb.co/hWFbjVQ/schema-720.jpg)
+
 ## 2. What entities the API will have
 
 The entities that the API will have are Products, Users and Orders.

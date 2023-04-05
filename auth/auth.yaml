@@ -1,0 +1,114 @@
+openapi: 3.0.0
+info:
+  title: auth API
+  description: Endpoint for authenticating users and resetting password
+  version: 1.0.0
+  contact:
+    email: thapaanupa@gmail.com
+    name: Anupa Thapa
+paths:
+  /auth:
+    post:
+      description: Creates an access token for the user to log in
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+                - email
+                - password
+      responses:
+        "200":
+          description: Access token created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+        "401":
+          description: Invalid username or password
+  /auth/{userId}:
+    patch:
+      description:
+        Resets the user's password once the password reset token is verified
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+          description: The user ID whose password is being reset
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: Password reset code received in the email
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                new_password:
+                  type: string
+                  required:
+                    - new_password
+      responses:
+        "200":
+          description: Password reset successfully
+    head:
+      description:
+        Generate a password reset code and send it to the user's email
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+          description: The ID of the user whose password is being reset
+      responses:
+        "200":
+          description: Password reset code sent successfully
+  /auth/{userId}/permission:
+    patch:
+      description: Ban or unban a user with permission data returned.
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+          description: The ID of the user whose permission will be updated
+        - in: header
+          name: Authorization
+          required: true
+          schema:
+            type: string
+          description: User access token from admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                is_banned:
+                  type: boolean
+              required:
+                - is_banned
+      responses:
+        "200":
+          description: User permission data updated successfully
+        "401":
+          description: Only admin can access this route
