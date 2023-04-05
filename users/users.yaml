@@ -7,9 +7,10 @@ servers:
   - url: https://{host}/api/v1
     description: Main server
 paths:
-  /auth:
+  /auth/login:
     post:
       summary: Authenticate user and create an access token
+      description: creates an access token for the user to sign in, if the credentials are correctly filled. returns token and 200 code.
       operationId: authenticateUser
       requestBody:
         description: User's email and password
@@ -40,10 +41,53 @@ paths:
                   token:
                     type: string
                     description: Access token
+  /auth/register:
+    post:
+      summary: Create a new user
+      description: create (sign up) a new user in the database. returns 200 code - user will need to sign in to get access token.
+      operationId: createUser
+      requestBody:
+        description: User to be created
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/User"
+      responses:
+        "200":
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
 
-  /auth/{userId}:
+  /auth/forgotPassword:
+    post:
+      description: user gets a password reset token in their email. returns 200 code to indicate success.
+      operationId: forgotPassword
+      requestBody:
+        description: User to get token
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+      responses:
+        "200":
+          description: Reset token has been sent to your email.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+  
+  /auth/resetpassword/{userId}:
     patch:
       summary: Reset user password
+      description: resets the password of users account once the password reset token is verified - user will need to sign in after receiving successful response. returns 200 code.
       operationId: resetPassword
       parameters:
         - name: userId
@@ -70,24 +114,11 @@ paths:
         "200":
           description: Password reset successfully
 
-    head:
-      summary: Send password reset email to the user
-      operationId: sendResetEmail
-      parameters:
-        - name: userId
-          in: path
-          schema:
-            type: string
-            format: uuid
-          required: true
-          description: Unique identifier of the user
-      responses:
-        "200":
-          description: Password reset email sent successfully
 
-  /auth/{userId}/permission:
+  /auth/permission/{userId}:
     patch:
       summary: Update user permission (ban/unban)
+      description:  used to ban or unban a user. the payload determines this. only admin can use this route, and is verified according to payload of decrypted access token. returns 200 code and new (changed) permissions data.
       operationId: updateUserPermission
       parameters:
         - name: userId
@@ -118,24 +149,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/User"
 
-  /users:
-    post:
-      summary: Create a new user
-      operationId: createUser
-      requestBody:
-        description: User to be created
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/User"
-      responses:
-        "200":
-          description: User created successfully
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/User"
 
   /users/{userId}:
     get:
@@ -158,6 +171,7 @@ paths:
                 $ref: "#/components/schemas/User"
     patch:
       summary: Update a user
+      description: user can change their first name, last name or email address. returns new data and 200 code.
       operationId: updateUserById
       parameters:
         - name: userId
