@@ -31,6 +31,8 @@
 
 there can be multiple entries with the same orderId, but the productId must be different. due to this, the orderId and productId combined will serve as the unique identifier of the entry (aka composite key).
 
+![alt text](https://i.ibb.co/hWFbjVQ/schema-720.jpg)
+
 ## 2. What entities the API will have
 
 The entities that the API will have are Products, Users and Orders.
@@ -86,7 +88,7 @@ This will be decided based on the needed actions. So far, the actions are:
 
 ## 5. Swagger output
 
-There are exactly four endpoints being products, auth, users and orders. For each endpoint, one folder will be created in this directory with a .yaml file describing the actions in subject number 4 - "what kind of endpoints will this API have?". For simplicity sake, I created on simple example which others can follow - but it also means one person might not have something to do.
+There are exactly three entities being products, users and orders. For each entity, one folder will be created in this directory with a .yaml file describing the actions in subject number 4 - "what kind of endpoints will this API have?".
 
 Useful links for creating a simple .yaml file with swagger: 
 - https://youtu.be/rkk2h6Tra9A
