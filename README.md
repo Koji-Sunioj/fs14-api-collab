@@ -52,28 +52,32 @@ This will be decided based on the needed actions. So far, the actions are:
 1. GET request - get all products in the database. query strings can be appended to narrow the search, to paginate, filter (size, categories, price), and sort attribute. returns a mapping of products.
 2. POST request - add a new product to the database with the above mentioned attributes. returns new item and 200 code.
    
-### /products/:productId
+### /products/{productId}
 
 3. GET request- get a product according to it's unique identifier. returns one object.
 4. PATCH request - updates a product with it's identifier. returns updated item and 200 http code.
 5. DELETE request - remove a product according to it's identifier. returns 200 http code.
 
-### /auth
+### /auth/signIn
 
 6. POST request - creates an access token for the user to sign in, if the credentials are correctly filled. returns token and 200 code.
 
-### /auth/:userId
-7. PATCH request - resets the password of users account once the password reset token is verified - user will need to sign in after receiving successful response. returns 200 code.
-8. HEAD request - user gets a password reset code in their email. returns 200 code to indicate success.
+### /auth/signUp
 
-### /auth/:userId/permission
-9. PATCH request - used to ban or unban a user. the payload determines this. only admin can use this route, and is verified according to payload of decrypted access token. returns 200 code and new (changed) permissions data. 
+7. POST request - create (sign up) a new user in the database. returns 200 code - user will need to sign in to get access token.
 
-### /users
+### /auth/forgotPassword
 
-10. POST request - create (sign up) a new user in the database. returns 200 code - user will need to sign in to get access token.
+8. POST - user gets a password reset code in their email. returns 200 code to indicate success.
 
-### /users/:userId
+### /auth/resetpassword/{userId}:
+
+9. PATCH request - resets the password of users account once the password reset token is verified - user will need to sign in after receiving successful response. returns 200 code.
+
+### /auth/setPermission{userId}
+10. PATCH request - used to ban or unban a user. the payload determines this. only admin can use this route, and is verified according to payload of decrypted access token. returns 200 code and new (changed) permissions data. 
+
+### /users/{userId}
 
 11. PATCH request - user can change their first name, last name or email address. returns new data and 200 code.
 
@@ -82,7 +86,7 @@ This will be decided based on the needed actions. So far, the actions are:
 12. POST request - adds a new order to the database with the product and user attributes. returns new data and 200 code.
 13. GET request - retrieves mapping of orders in the database. a user can only access this endpoint by appending an access token to the request header, which then retrieves their own orders.
 
-### /orders/:orderId
+### /orders/{orderId}
 
 14. GET request gets an order according to order identifier. returns one order.
 
