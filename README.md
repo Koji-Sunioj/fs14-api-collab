@@ -88,7 +88,7 @@ This will be decided based on the needed actions. So far, the actions are:
 
 ## 5. Swagger output
 
-There are exactly three entities being products, users and orders. For each entity, one folder will be created in this directory with a .yaml file describing the actions in subject number 4 - "what kind of endpoints will this API have?".
+There are exactly four endpoints being products, auth, users and orders. For each endpoint, one folder will be created in this directory with a .yaml file describing the actions in subject number 4 - "what kind of endpoints will this API have?". For simplicity sake, I created on simple example which others can follow - but it also means one person might not have something to do.
 
 Useful links for creating a simple .yaml file with swagger: 
 - https://youtu.be/rkk2h6Tra9A
