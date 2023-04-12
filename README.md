@@ -101,6 +101,15 @@ Useful links for creating a simple .yaml file with swagger:
 - https://learn21.in/blog/code-snippet-sample-example-wagger-api
 
 For anyone not having something to do, perhaps making an ERD diagram or something worth effort can be delegated to them.
+
+## 6. ERD Diagram for database
+
+![diagram for database](erd.jpg)
+
+## 7. PostgreSQL database schema
+
+.sql file in the folder called database available for viewing
+
 # Design a REST API - Design First (NO CODE)
 
 Before diving into the assignment, make sure you review the slides and understand the theortical part and best practices.
